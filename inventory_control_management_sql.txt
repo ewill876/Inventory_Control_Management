@@ -1,0 +1,47 @@
+CREATE TABLE products (
+    productid INT PRIMARY KEY,
+    productname VARCHAR (40),
+    partnumber INT,
+    productlabel VARCHAR (40),
+    startinginventory VARCHAR (40),
+    inventoryreceived VARCHAR (40),
+    inventoryshipped VARCHAR (40),
+    inventoryonhand VARCHAR (40),
+    minimumrequired INT
+);
+
+DROP TABLE products;
+
+CREATE TABLE suppliers (
+    supplierid INT PRIMARY KEY,
+    supplier VARCHAR (40)
+);
+
+DROP TABLE suppliers;
+
+CREATE TABLE orders (
+    orderid INT PRIMARY KEY,
+    title VARCHAR (40),
+    first VARCHAR (40),
+    middle VARCHAR (40),
+    last VARCHAR (40),
+    productid INT,
+    numbershipped INT,
+    orderdate DATE,
+    FOREIGN KEY (productid) REFERENCES products (productid) ON DELETE SET NULL
+);
+
+DROP TABLE orders;
+
+CREATE TABLE purchases (
+    purchaseid INT PRIMARY KEY,
+    supplierid INT,
+    productid INT,
+    numberreceived INT,
+    purchasedate DATE,
+    FOREIGN KEY (productid) REFERENCES products (productid) ON DELETE SET NULL,
+    FOREIGN KEY (supplierid) REFERENCES suppliers (supplierid) ON DELETE SET NULL
+   
+);
+    
+DROP TABLE purchases;
